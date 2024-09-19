@@ -1,0 +1,101 @@
+#hero {
+  --min-width: 360;
+  --max-width: 1200;
+
+  margin: auto;
+  max-width: calc(var(--max-width) * 1px);
+  min-width: calc(var(--min-width) * 1px);
+  height: 589px;
+
+  position: relative;
+
+  color: #f2e5d8;
+
+  container-type: inline-size;
+
+  .details {
+    position: absolute;
+    z-index: 2;
+    text-shadow: 0 0 10px #060607;
+
+    /*
+      Calculate the coordinates by placing them on a quadratic Bezier curve.
+
+      --cqiscale is the scalar value of 1% of the container width (number of pixels in 1cqi). It is set by Javascript.
+
+      --end-a-xxx is the coordinates when --cqiscale is its smallest value.
+      --end-b-xxx is the coordinates when --cqiscale is its largest value.
+      --control-xxx is the coordinates of Bezier the control point.
+
+      --lambda is the Bezier curve parameter.
+      --lambdash is (1 - --lambda) as a convenience.
+      --coefficient-x are the coefficients of the Bezier curve in terms of both the correct binomial and the lambda parameter.
+    */
+
+    --end-a-top: 50px;
+    --end-a-left: 20px;
+
+    --end-b-top: 220px;
+    --end-b-left: 565px;
+
+    --control-top: 70px;
+    --control-left: 400px;
+
+    --min-cqi-scale: var(--min-width) / 100;
+    --max-cqi-scale: var(--max-width) / 100;
+
+    --lambda: calc((var(--cqiscale) - var(--min-cqi-scale)) / (var(--max-cqi-scale) - var(--min-cqi-scale)));
+    --lambdash: calc(1 - var(--lambda));
+
+    --coefficient-3: calc(var(--lambda) * var(--lambda));
+    --coefficient-2: calc(2 * var(--lambda) * var(--lambdash));
+    --coefficient-1: calc(var(--lambdash) * var(--lambdash));
+
+    --bezier-top: calc(var(--end-a-top) * var(--coefficient-1) + var(--control-top) * var(--coefficient-2) + var(--end-b-top) * var(--coefficient-3));
+
+    --bezier-left: calc(var(--end-a-left) * var(--coefficient-1) + var(--control-left) * var(--coefficient-2) + var(--end-b-left) * var(--coefficient-3));
+
+    top: var(--bezier-top);
+    left: var(--bezier-left);
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      /* Evaluates to 3.5rem for a 360px wide container, and 5rem for 1200px */
+      font-size: clamp(3.5rem, 2.857rem + 2.857cqi, 5rem);
+      font-weight: 800;
+    }
+
+    p {
+      /* Evaluates to 2rem for a 360px wide container, and 2.5rem for 1200px */
+      font-size: clamp(2rem, 1.786rem + 0.952cqi, 2.5rem);
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+
+    z-index: 1;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(../meerkat.jpg);
+    background-origin: content-box;
+    background-repeat: no-repeat;
+
+    /* Evaluates to -310px for a 450px wide container, and 0px for 1200px */
+    background-position-x: clamp(-310px, 41.333cqi - 496px, 0px);
+
+    /* Evaluates to -25px for a 450px wide container, and 0px for 1200px */
+    background-position-y: clamp(-25px, 3.333cqi - 40px, 0px);
+
+    /* Evaluates to 710px for a 360px wide container, and 589px for 1200px */
+    background-size: auto clamp(589px, 761.857px - 14.405cqi, 710px);
+  }
+}

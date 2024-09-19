@@ -1,0 +1,23 @@
+body {
+  font-family: "Podkova", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+
+  margin: 0;
+  padding: 50px;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.marker {
+  --size: 6px;
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  border-radius: var(--size);
+  background-color: red;
+  z-index: 1000;
+}

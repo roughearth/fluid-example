@@ -1,0 +1,78 @@
+#hero {
+  margin: auto;
+  max-width: 1200px;
+  min-width: 360px;
+  height: 589px;
+
+  position: relative;
+
+  color: #f2e5d8;
+
+  container-type: inline-size;
+
+  .details {
+    position: absolute;
+    z-index: 2;
+    text-shadow: 0 0 10px #060607;
+
+    top: 220px;
+    left: 565px;
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      font-size: 5rem;
+      font-weight: 800;
+    }
+
+    p {
+      font-size: 2.5rem;
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+
+    z-index: 1;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(../meerkat.jpg);
+    background-origin: content-box;
+    background-repeat: no-repeat;
+
+    background-position-x: 0px;
+    background-position-y: 0px;
+    background-size: auto 589px;
+  }
+}
+
+
+@container (max-width: 800px) {
+  #hero {
+    .details {
+      top: 50px;
+      left: 20px;
+
+      h1 {
+        font-size: 3.5rem;
+      }
+
+      p {
+        font-size: 2rem;
+      }
+    }
+
+    &::before {
+      background-position-x: -310px;
+      background-position-y: -25px;
+      background-size: auto 710px;
+    }
+  }
+}

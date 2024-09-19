@@ -1,0 +1,84 @@
+<html>
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Podkova:wght@400..800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css" />
+  <meta name="viewport" content="width=device-width">
+</head>
+
+<body>
+  <h1>Fluid Everything Else</h1>
+  <h2>Versions</h2>
+  <ul>
+    <li><a href="./version1-static/">Version 1 - static values and a container query</a></li>
+    <li><a href="./version2-initial-fluid/">Version 2 - First draft of fluid values</a></li>
+    <li><a href="./version3-bg-moved/">Version 3 - Adjusted image position</a></li>
+    <li><a href="./version4-bent-path/">Version 4 - Put a kink in the text path</a></li>
+    <li><a href="./version5-bezier-path/">Version 5 - Bezier curve text path (needs JS)</a></li>
+  </ul>
+
+  <h2>Calculator</h2>
+  <ul>
+    <li>Uses simultaneous equations to produce a pure CSS expression, with an explanatory comment to mitigate magic numbers
+    </li>
+    <li>The "at" values for each point are the pixel width for the container/viewport</li>
+    <li>The target value for each point is in the "fixed" unit</li>
+    <li>The variable unit doesn't change the calculation, only the unit in the output</li>
+    <li>Calculate also copies the output to the clipboard</li>
+  </ul>
+  <table id="calculator">
+    <tr>
+      <td>Point A</th>
+      <td>
+        <input id="targetA" value="589" type="number" min="-9999" max="9999" required /><span data-unit>px</span>
+        at
+        <input id="pxA" value="1200" type="number" min="-9999" max="9999" required />px
+      </td>
+    </tr>
+    <tr>
+      <td>Point B</th>
+      <td>
+        <input id="targetB" value="710" type="number" min="-9999" max="9999" required /><span data-unit>px</span>
+        at
+        <input id="pxB" value="360" type="number" min="-9999" max="9999" required />px
+      </td>
+    </tr>
+    <tr>
+      <td>Fixed unit</th>
+      <td><select id="fixedUnit">
+          <option>px</option>
+          <option>rem</option>
+        </select></td>
+    </tr>
+    <tr>
+      <td>Variable unit</th>
+      <td><select id="variableUnit">
+          <option>cqi</option>
+          <option>vi</option>
+        </select></td>
+    </tr>
+    <tr>
+      <td>Format</th>
+      <td><select id="format">
+          <option>clamp</option>
+          <option>calc</option>
+        </select></td>
+    </tr>
+    <tr>
+      <td>CSS property</th>
+      <td><input id="property" size="25" value="background-size: auto" /></td>
+    </tr>
+    <tr>
+      <td><button id="calculate">Copy</button></td>
+      <td>
+        <pre id="result"></pre>
+      </td>
+  </table>
+
+  <script src="./calculate.js"></script>
+</body>
+
+</html>
