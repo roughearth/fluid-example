@@ -22,8 +22,8 @@ function calculateExpression(shouldCopy) {
   const remFactor = fx === "rem" ? 16 : 1;
 
   // need to divide arguments by 100 because container/viewport units are 1% of the respective dimension
-  const argA = pA / 100 / remFactor;
-  const argB = pB / 100 / remFactor;
+  const [argA, argB] = [pA, pB].map(a => a / 100 / remFactor);
+
 
   // solve the simultaneous equations
   const varResult = (tA - tB) / (argA - argB);

@@ -15,7 +15,6 @@
     z-index: 2;
     text-shadow: 0 0 10px #060607;
 
-
     /* Evaluates to 50px for a 360px wide container, and 220px for 1200px */
     top: clamp(50px, 20.238cqi - 22.857px, 220px);
 
